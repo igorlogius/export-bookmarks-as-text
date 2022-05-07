@@ -1,0 +1,19 @@
+{
+  "author": "igorlogius",
+  "background": {
+	"scripts": ["background.js"]
+  },
+  "description": "export bookmarks as text",
+  "icons": {
+  },
+  "browser_action": {
+      "default_title": "Export Bookmarks as Text"
+  },
+  "manifest_version": 2,
+  "name": "export-bookmarks-as-text",
+  "permissions": [
+    "menus",
+    "bookmarks"
+  ],
+  "version": "1.0.0"
+}
