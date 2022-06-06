@@ -1,3 +1,4 @@
+/* global browser */
 
 const manifest = browser.runtime.getManifest();
 const extname = manifest.name;
@@ -8,7 +9,7 @@ browser.menus.create({
     title: menuid1,
     contexts: ["bookmark"],
     visible: true,
-    onclick: async function(info, tab) {
+    onclick: async function(info /*, tab*/) {
         if(info.bookmarkId ) {
             try {
                 const tmp = (await browser.bookmarks.getSubTree(info.bookmarkId))[0];
@@ -48,7 +49,7 @@ function exportData(urls){
 }
 
 
-browser.browserAction.onClicked.addListener(async (tab) => {
+browser.browserAction.onClicked.addListener(async (/*tab*/) => {
     try {
         const tmp = (await browser.bookmarks.getTree())[0];
         exportData(recGetBookmarkUrls(tmp,1));
