@@ -5,6 +5,7 @@
   },
   "description": "export bookmarks as text",
   "icons": {
+    "320": "icon.png"
   },
   "browser_action": {
       "default_title": "Export Bookmarks as Text"
@@ -15,5 +16,5 @@
     "menus",
     "bookmarks"
   ],
-  "version": "1.0.1"
+  "version": "1.0.2"
 }

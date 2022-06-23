@@ -24,7 +24,7 @@ browser.menus.create({
 function recGetBookmarkUrls(bookmarkItem,depth){
 	let urls = [];
 	if(bookmarkItem.url){
-		urls.push(" ".repeat(depth) + bookmarkItem.title + " : " + bookmarkItem.url);
+		urls.push(" ".repeat(depth) + " " + bookmarkItem.title + " : " + bookmarkItem.url);
 	}else
 	if(bookmarkItem.children){
         urls.push(" ".repeat(depth) + "> " + bookmarkItem.title);
