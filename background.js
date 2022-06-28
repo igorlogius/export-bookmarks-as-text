@@ -2,11 +2,10 @@
 
 const manifest = browser.runtime.getManifest();
 const extname = manifest.name;
-const menuid1 = "Export Selected Bookmarks";
 
 browser.menus.create({
-    id: menuid1,
-    title: menuid1,
+    id: extname,
+    title: extname,
     contexts: ["bookmark"],
     visible: true,
     onclick: async function(info /*, tab*/) {
