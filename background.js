@@ -3,9 +3,18 @@
 const manifest = browser.runtime.getManifest();
 const extname = manifest.name;
 
+function getTimeStampStr() {
+    const d = new Date();
+    let ts = "";
+    [   d.getFullYear(), d.getMonth()+1, d.getDate()+1,
+        d.getHours(), d.getMinutes(), d.getSeconds()].forEach( (t,i) => {
+        ts = ts + ((i!==3)?"-":"_") + ((t<10)?"0":"") + t;
+    });
+    return ts.substring(1);
+}
+
 browser.menus.create({
-    id: extname,
-    title: extname,
+    title: 'Export as Text',
     contexts: ["bookmark"],
     visible: true,
     onclick: async function(info /*, tab*/) {
@@ -39,7 +48,7 @@ function exportData(urls){
     let dl = document.createElement('a');
     const href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(content);
     dl.setAttribute('href', href);
-    dl.setAttribute('download', extname + '.txt');
+    dl.setAttribute('download', getTimeStampStr() + '_bookmarks.txt');
     dl.setAttribute('visibility', 'hidden');
     dl.setAttribute('display', 'none');
     document.body.appendChild(dl);
