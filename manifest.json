@@ -2,20 +2,18 @@
   "author": "igorlogius",
   "homepage_url": "https://github.com/igorlogius/export-bookmarks-as-text",
   "background": {
-	"scripts": ["background.js"]
+    "scripts": ["background.js"]
   },
   "description": "Export Bookmarks as Text",
   "icons": {
     "320": "icon.png"
   },
   "browser_action": {
-      "default_title": "Export Bookmarks as Text"
+    "default_area": "navbar",
+    "default_title": "Export Bookmarks as Text"
   },
   "manifest_version": 2,
   "name": "Export Bookmarks as Text",
-  "permissions": [
-    "menus",
-    "bookmarks"
-  ],
-  "version": "1.1.4"
+  "permissions": ["menus", "bookmarks"],
+  "version": "1.1.5"
 }
