@@ -1,7 +1,6 @@
 /* global browser */
 
-const manifest = browser.runtime.getManifest();
-const extname = manifest.name;
+let rootNodeName = "root";
 
 function getTimeStampStr() {
   const d = new Date();
@@ -27,6 +26,7 @@ browser.menus.create({
     if (info.bookmarkId) {
       try {
         const tmp = (await browser.bookmarks.getSubTree(info.bookmarkId))[0];
+        rootNodeName = tmp.title || "";
         exportData(recGetBookmarkUrls(tmp, 0));
       } catch (e) {
         console.error(e);
@@ -50,12 +50,17 @@ function recGetBookmarkUrls(bookmarkItem, depth) {
   return urls;
 }
 
+// max foldername length is 128 characters 2^7
+function genDLFilename() {
+  return "bookmarks_" + rootNodeName.substr(0, 128) + "_" + getTimeStampStr();
+}
+
 function exportData(urls) {
   const content = urls.join("\n");
   let dl = document.createElement("a");
   const href = "data:text/plain;charset=utf-8," + encodeURIComponent(content);
   dl.setAttribute("href", href);
-  dl.setAttribute("download", getTimeStampStr() + "_bookmarks.txt");
+  dl.setAttribute("download", genDLFilename());
   dl.setAttribute("visibility", "hidden");
   dl.setAttribute("display", "none");
   document.body.appendChild(dl);
@@ -66,6 +71,7 @@ function exportData(urls) {
 browser.browserAction.onClicked.addListener(async (/*tab*/) => {
   try {
     const tmp = (await browser.bookmarks.getTree())[0];
+    rootNodeName = "root";
     exportData(recGetBookmarkUrls(tmp, 1));
   } catch (e) {
     console.error(e);
