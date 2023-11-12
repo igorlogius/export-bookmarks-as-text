@@ -1,5 +1,11 @@
 Export all bookmarks or a branch of the bookmark tree in a text only format
 
+
+
+https://github.com/igorlogius/export-bookmarks-as-text/assets/67047467/ed2f9bb6-56e1-4b13-88aa-0c48b57d3c78
+
+
+
 <b>Usage:</b>
 <ul>
 	<li>click the toolbar button/icon to export all bookmarks</li>
