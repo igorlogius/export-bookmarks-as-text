@@ -52,14 +52,20 @@ function recGetBookmarkUrls(bookmarkItem, depth) {
 
 // max foldername length is 128 characters 2^7
 function genDLFilename() {
-  return "bookmarks_" + rootNodeName.substr(0, 128) + "_" + getTimeStampStr();
+  return (
+    "bookmarks_" +
+    rootNodeName.substr(0, 128) +
+    "_" +
+    getTimeStampStr() +
+    ".txt"
+  );
 }
 
 function exportData(urls) {
   const content = urls.join("\n");
   let dl = document.createElement("a");
-  const href = "data:text/plain;charset=utf-8," + encodeURIComponent(content);
-  dl.setAttribute("href", href);
+  let textFileAsBlob = new Blob([content], { type: "text/plain" });
+  dl.setAttribute("href", window.URL.createObjectURL(textFileAsBlob));
   dl.setAttribute("download", genDLFilename());
   dl.setAttribute("visibility", "hidden");
   dl.setAttribute("display", "none");

@@ -15,5 +15,5 @@
   "manifest_version": 2,
   "name": "Export Bookmarks as Text",
   "permissions": ["menus", "bookmarks"],
-  "version": "1.1.6"
+  "version": "1.1.7"
 }
